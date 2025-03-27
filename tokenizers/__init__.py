@@ -11,15 +11,15 @@ from .bpe import BPETokenizer
 from .wordpiece import WordPieceTokenizer
 
 __all__ = [
-    'Tokenizer',
-    'WhiteSpaceTokenizer',
-    'WordTokenizer',
-    'SentenceTokenizer',
-    'CharacterTokenizer',
-    'NGramTokenizer',
-    'RegexTokenizer',
-    'TreebankTokenizer',
-    'SubwordTokenizer',
-    'BPETokenizer',
-    'WordPieceTokenizer'
+    "Tokenizer",
+    "WhiteSpaceTokenizer",
+    "WordTokenizer",
+    "SentenceTokenizer",
+    "CharacterTokenizer",
+    "NGramTokenizer",
+    "RegexTokenizer",
+    "TreebankTokenizer",
+    "SubwordTokenizer",
+    "BPETokenizer",
+    "WordPieceTokenizer",
 ]
