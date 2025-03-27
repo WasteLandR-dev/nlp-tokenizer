@@ -4,7 +4,5 @@ setup(
     name="nlp_tokenizer",
     version="0.0.1",
     packages=find_packages(),
-    install_requires=[
-        'nltk'
-    ],
+    install_requires=["nltk"],
 )

@@ -2,6 +2,7 @@ from .base import Tokenizer
 from collections import defaultdict
 import re
 
+
 class WordPieceTokenizer(Tokenizer):
     def __init__(self, vocab_size: int = 1000, unknown_token: str = "[UNK]"):
         self.vocab_size = vocab_size
@@ -25,11 +26,11 @@ class WordPieceTokenizer(Tokenizer):
 
         while len(self.vocab) < self.vocab_size:
             pair_scores = defaultdict(int)
-            
+
             for word, count in word_counts.items():
                 tokens = self._split_word(word)
-                for i in range(len(tokens)-1):
-                    pair = (tokens[i], tokens[i+1])
+                for i in range(len(tokens) - 1):
+                    pair = (tokens[i], tokens[i + 1])
                     joined = "".join(pair)
                     pair_scores[joined] += count
 
@@ -38,11 +39,11 @@ class WordPieceTokenizer(Tokenizer):
 
             best_pair = max(pair_scores, key=pair_scores.get)
             self.vocab.add(best_pair)
-            
+
             new_word_counts = defaultdict(int)
             for word, count in word_counts.items():
                 new_word = word.replace(best_pair, f" {best_pair} ")
-                new_word = re.sub(r'\s+', ' ', new_word).strip()
+                new_word = re.sub(r"\s+", " ", new_word).strip()
                 new_word_counts[new_word] += count
             word_counts = new_word_counts
 
@@ -50,8 +51,8 @@ class WordPieceTokenizer(Tokenizer):
         self.max_token_length = max(len(token) for token in self.vocab)
 
     def _preprocess(self, text: str) -> list:
-        words = re.findall(r'\S+', text.lower())
-        return [f'^{word}$' for word in words]
+        words = re.findall(r"\S+", text.lower())
+        return [f"^{word}$" for word in words]
 
     def _split_word(self, word: str) -> list:
         tokens = []
@@ -77,13 +78,13 @@ class WordPieceTokenizer(Tokenizer):
         tokens = []
         for word in words:
             tokens.extend(self._split_word(word))
-        return [token for token in tokens if token not in ['^', '$']]
+        return [token for token in tokens if token not in ["^", "$"]]
 
     def _get_stats(self, word_counts):
         pairs = defaultdict(int)
         for word, count in word_counts.items():
             symbols = word.split()
-            for i in range(len(symbols)-1):
-                pair = (symbols[i], symbols[i+1])
+            for i in range(len(symbols) - 1):
+                pair = (symbols[i], symbols[i + 1])
                 pairs[pair] += count
         return pairs

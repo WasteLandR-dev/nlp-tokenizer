@@ -1,5 +1,6 @@
 from .base import Tokenizer
-import nltk # TODO: Implement without nltk
+import nltk  # TODO: Implement without nltk
+
 
 class TreebankTokenizer(Tokenizer):
     def __init__(self):
@@ -9,12 +10,12 @@ class TreebankTokenizer(Tokenizer):
             raise ImportError("NLTK is required. Use 'pip install nltk'")
 
         required_resources = [
-            ('tokenizers/punkt', 'punkt'),
-            ('taggers/averaged_perceptron_tagger', 'averaged_perceptron_tagger'),
-            ('corpora/stopwords', 'stopwords'),
-            ('tokenizers/punkt_tab', 'punkt_tab')
+            ("tokenizers/punkt", "punkt"),
+            ("taggers/averaged_perceptron_tagger", "averaged_perceptron_tagger"),
+            ("corpora/stopwords", "stopwords"),
+            ("tokenizers/punkt_tab", "punkt_tab"),
         ]
-        
+
         for path, package in required_resources:
             try:
                 nltk.data.find(path)
